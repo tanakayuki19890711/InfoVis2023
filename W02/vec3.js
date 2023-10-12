@@ -48,16 +48,16 @@ class Vec3 {
 
 function AreaOfTriangle(v1, v2, v3) {
     const crossProduct = v2.subtract(v1).cross(v3.subtract(v1));
-    const volume = Math.abs(v1.dot(crossProduct)) / 6;
+    const volume = Math.abs(v1.dot(crossProduct)) / 2;
     return volume;
 }
 
-const point1 = new Vec3(1, 3, 0);
-const point2 = new Vec3(1, 6, 0);
-const point3 = new Vec3(0, 1, 4);
-const point4 = new Vec3(0, 0, 1);
+// const point1 = new Vec3(1, 3, 0);
+// const point2 = new Vec3(1, 6, 0);
+// const point3 = new Vec3(1, 0, 0);
+// const point4 = new Vec3(1, 0, 1);
 
-console.log(AreaOfTriangle(point2, point3, point4));
-console.log(point1.min())
-console.log(point2.max())
-console.log(point3.mid())
+// console.log(AreaOfTriangle(point2, point3, point4));
+// console.log(point1.min())
+// console.log(point2.max())
+// console.log(point3.mid())
