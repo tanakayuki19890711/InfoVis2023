@@ -22,7 +22,7 @@ class Vec3 {
 
     mid() {
         const values = [this.x, this.y, this.z].sort((a, b) => a - b);
-        return values[1]; // 中央の値を返す
+        return values[1]; 
     }
 
     cross(v) {
