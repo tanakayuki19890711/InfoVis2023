@@ -46,6 +46,7 @@ class Vec3 {
     }
 }
 
+// 辺のベクトルの外積を計算して、絶対値を2で割った
 function AreaOfTriangle(v1, v2, v3) {
     const crossProduct = v2.subtract(v1).cross(v3.subtract(v1));
     const volume = Math.abs(v1.dot(crossProduct)) / 2;
