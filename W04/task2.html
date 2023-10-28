@@ -25,7 +25,7 @@
                .data(data)
                .enter()
                .append("text")
-               .attr("x", function(d){ return +d.x + (+d.width / 2); }) 
+               .attr("x", function(d){ return +d.x-10 + (+d.width / 2); }) 
                .attr("y", function(d){ return +d.y + (+d.height / 2); }) 
                .attr("dy", "0.35em") 
                .attr("text-anchor", "middle") 
