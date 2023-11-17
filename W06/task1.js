@@ -1,4 +1,5 @@
-d3.csv("https://vizlab-kobe-lecture.github.io/InfoVis2021/W04/data.csv")
+// d3.csv("https://vizlab-kobe-lecture.github.io/InfoVis2021/W04/data.csv")
+d3.csv("https://tanakayuki19890711.github.io/InfoVis2023/W06/data.csv")
     .then( data => {
         data.forEach( d => { d.x = +d.x; d.y = +d.y; });
 
@@ -6,7 +7,7 @@ d3.csv("https://vizlab-kobe-lecture.github.io/InfoVis2021/W04/data.csv")
             parent: '#drawing_region',
             width: 256,
             height: 256,
-            margin: {top:10, right:10, bottom:20, left:10}
+            margin: {top:20, right:20, bottom:20, left:40}
         };
 
         const scatter_plot = new ScatterPlot( config, data );
@@ -23,7 +24,7 @@ class ScatterPlot {
             parent: config.parent,
             width: config.width || 256,
             height: config.height || 256,
-            margin: config.margin || {top:10, right:10, bottom:10, left:10}
+            margin: config.margin || {top:20, right:20, bottom:20, left:20}
         }
         this.data = data;
         this.init();
@@ -50,10 +51,10 @@ class ScatterPlot {
 
 
         self.xaxis = d3.axisBottom( self.xscale )
-            .ticks(6);
+            .ticks(8);
         // Y軸の生成
         self.yaxis = d3.axisLeft( self.yscale )
-        .ticks(6);
+            .ticks(8);
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`);
@@ -68,10 +69,12 @@ class ScatterPlot {
 
         const xmin = d3.min( self.data, d => d.x );
         const xmax = d3.max( self.data, d => d.x );
+        // self.xscale.domain( [xmin, xmax] );
         self.xscale.domain( [xmin, xmax] );
 
         const ymin = d3.min( self.data, d => d.y );
         const ymax = d3.max( self.data, d => d.y );
+        // self.yscale.domain( [ymin, ymax] );
         self.yscale.domain( [ymin, ymax] );
 
         self.render();
