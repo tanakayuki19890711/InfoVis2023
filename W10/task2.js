@@ -1,16 +1,9 @@
-// d3.csv("https://tanakayuki19890711.github.io/InfoVis2023/W10/task2.csv").then(function(data) {
-//     data.forEach(function(d) {
-//         d.x = +d.x; 
-//         d.y = +d.y; 
-//         d.r = +d.r; 
-//     });
-
-    var data = [
-        {x:20,y:20,r:10},
-        {x:100,y:50,r:10},
-        {x:70,y:80,r:10},
-        {x:170,y:30,r:10},
-        {x:150,y:70,r:10}];
+d3.csv("https://tanakayuki19890711.github.io/InfoVis2023/W10/task2.csv").then(function(data) {
+    data.forEach(function(d) {
+        d.x = +d.x; 
+        d.y = +d.y; 
+        d.r = +d.r; 
+    });
 
     var margin = { top: 50, right: 20, bottom: 50, left: 70 };
     var width = 500 - margin.left - margin.right;
@@ -30,18 +23,14 @@
         .domain([0, d3.max(data, d => d.y) + 10])
         .range([height, 0]);
 
-    var circles = svg.selectAll('circle')
+    svg.selectAll('circle')
         .data(data)
         .enter()
         .append('circle')
         .attr('cx', d => xScale(d.x))
         .attr('cy', d => yScale(d.y))
         .attr('r', d => d.r);
-    
-    circles
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .attr('r', d => d.r);
+});
     
     circles
         .on('mouseover', (e,d) => {
