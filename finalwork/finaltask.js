@@ -53,6 +53,6 @@ class MyLossGraph {
 }
 
 
-// const myLossGraph = new MyLossGraph('#drawing_region', 'https://tanakayuki19890711.github.io/InfoVis2023/finalwork/loss.csv');
-const myLossGraph = new MyLossGraph('#drawing_region', '/Users/tanakayuuki/Work/InfoVis2023/finalwork/loss.csv');
+const myLossGraph = new MyLossGraph('#drawing_region', 'https://tanakayuki19890711.github.io/InfoVis2023/finalwork/loss.csv');
+// const myLossGraph = new MyLossGraph('#drawing_region', '/Users/tanakayuuki/Work/InfoVis2023/finalwork/loss.csv');
 
