@@ -24,7 +24,6 @@ class MyLossGraph {
     changeEpochStep(change) {
         // 刻み幅を更新
         this.epochStep = Math.max(1, this.epochStep + change);
-
         // グラフを更新
         this.update(this.data);
     }
@@ -43,34 +42,67 @@ class MyLossGraph {
         });
     }
 
-    update(data) {
-        // データをフィルタリングして刻み幅に応じたデータを表示
-        data = data.filter((d, i) => i % this.epochStep === 0);
-        let line = d3.line()
-                     .x((d, i) => this.xScale(i))
-                     .y(d => this.yScale(d.y));
+//     update(data) {
+//         // データをフィルタリングして刻み幅に応じたデータを表示
+//         data = data.filter((d, i) => i % this.epochStep === 0);
+//         let line = d3.line()
+//                      .x((d, i) => this.xScale(i))
+//                      .y(d => this.yScale(d.y));
 
-        this.svg.selectAll(".line")
-            .data([data]) // d3.line expects an array of data points
-            .join("path")
-            .attr("class", "line")
-            .attr("d", line)
-            .attr("fill", "none")
-            .attr("stroke", "steelblue")
-            .attr("stroke-width", 2);
+//         this.svg.selectAll(".line")
+//             .data([data]) // d3.line expects an array of data points
+//             .join("path")
+//             .attr("class", "line")
+//             .attr("d", line)
+//             .attr("fill", "none")
+//             .attr("stroke", "steelblue")
+//             .attr("stroke-width", 2);
 
-        // Add the X Axis
-        this.svg.append("g")
-            .attr("transform", "translate(0," + this.height + ")")
-            .call(d3.axisBottom(this.xScale));
+//         // X軸の追加
+//         this.svg.append("g")
+//             .attr("transform", "translate(0," + this.height + ")")
+//             .call(d3.axisBottom(this.xScale));
 
-        // Add the Y Axis
-        this.svg.append("g")
-            .call(d3.axisLeft(this.yScale));
-    }
+//         // Y軸の追加
+//         this.svg.append("g")
+//             .call(d3.axisLeft(this.yScale));
+//     }
+// }
+
+update(data) {
+    // データをフィルタリングして刻み幅に応じたデータを表示
+    data = data.filter((d, i) => i % this.epochStep === 0);
+
+    // xScaleのドメインを更新
+    this.xScale.domain([0, d3.max(data, d => +d.x)]);
+
+    let line = d3.line()
+                 .x(d => this.xScale(+d.x)) // データのx値に基づいてスケールを適用
+                 .y(d => this.yScale(+d.y));
+
+    this.svg.selectAll(".line")
+        .data([data]) // d3.line expects an array of data points
+        .join("path")
+        .attr("class", "line")
+        .attr("d", line)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 2);
+
+    // X軸を更新するために以前のX軸を削除
+    this.svg.selectAll("g.x-axis").remove();
+
+    // X軸の追加（更新）
+    this.svg.append("g")
+        .attr("transform", "translate(0," + this.height + ")")
+        .attr("class", "x-axis") // X軸のためのクラスを追加
+        .call(d3.axisBottom(this.xScale));
+
+       // Y軸の追加
+       this.svg.append("g")
+       .call(d3.axisLeft(this.yScale));
 }
-
-
+}
 const myLossGraph = new MyLossGraph('#drawing_region', 'https://tanakayuki19890711.github.io/InfoVis2023/finalwork/loss.csv');
 // const myLossGraph = new MyLossGraph('#drawing_region', '/Users/tanakayuuki/Work/InfoVis2023/finalwork/loss.csv');
 
