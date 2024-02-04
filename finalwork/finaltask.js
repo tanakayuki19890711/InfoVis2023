@@ -14,7 +14,7 @@ class MyLossGraph {
         this.loadData();
         this.maxLoss = 0;
         // 刻み幅の初期値を設定
-        this.epochStep = 1; // 初期刻み幅
+        this.epochStep = 1; 
 
         // 刻み幅変更用のボタンイベントを追加
         d3.select("#btn-decrease").on("click", () => this.changeEpochStep(-1));
@@ -46,9 +46,6 @@ class MyLossGraph {
     
             // データセット全体のlossの最大値を計算
             this.maxLoss = d3.max(this.data, d => +d.y); 
-    
-            console.log(this.data);
-            console.log(this.maxLoss); 
 
             this.xScale = d3.scaleLinear()
                             .domain([0, this.data.length - 1])
@@ -74,8 +71,7 @@ update(data) {
     this.xScale.domain([0, d3.max(data, d => +d.x)]);
 
     // yScaleのドメインをデータセットのlossの最大値に基づいて更新
-    this.yScale.domain([0, this.maxLoss]); // 常に全データの最大値に基づく
-
+    this.yScale.domain([0, this.maxLoss]); 
     let line = d3.line()
                  .x(d => this.xScale(+d.x)) // データのx値に基づいてスケールを適用
                  .y(d => this.yScale(+d.y));
@@ -129,15 +125,14 @@ update(data) {
 }
 function showImage() {
     var epoch = document.getElementById("epochInput").value; // 入力されたエポックを取得
-    var imageUrl = getImageUrlForEpoch(epoch); // エポックに基づいた画像のURLを取得する関数（実装が必要）
+    var imageUrl = getImageUrlForEpoch(epoch); // エポックに基づいた画像のURLを取得する関数
     var imageDisplay = document.getElementById("imageDisplay"); // 画像を表示する要素を取得
     imageDisplay.innerHTML = `<img src="${imageUrl}" alt="Image for epoch ${epoch}">`; // 画像を表示
 }
 
 function getImageUrlForEpoch(epoch) {
-    // ここでエポックに対応する画像のURLを返すロジックを実装します。
-    // 例えば、画像が特定のパターンでURLが設定されている場合、そのパターンに基づいてURLを構築できます。
-    return `https://tanakayuki19890711.github.io/InfoVis2023/finalwork/${epoch}.png`; // 仮のURL構築例
+    //画像が特定のパターンでURLが設定されている場合、そのパターンに基づいてURLを構築
+    return `https://tanakayuki19890711.github.io/InfoVis2023/finalwork/${epoch}.png`; 
 }
 const myLossGraph = new MyLossGraph('#drawing_region', 'https://tanakayuki19890711.github.io/InfoVis2023/finalwork/loss.csv');
 // const myLossGraph = new MyLossGraph('#drawing_region', '/Users/tanakayuuki/Work/InfoVis2023/finalwork/loss.csv');

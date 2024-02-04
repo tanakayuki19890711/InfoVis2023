@@ -1,16 +1,74 @@
-<html>
-    <head>
-        <title>finaltask</title>
-    </head>
-    <body>
-    <button id="btn-decrease">刻み幅を半分にする</button>
-    <button id="btn-increase">刻み幅を2倍にする</button>
-    <div id="epoch-step-display">現在の刻み幅: 1</div>
-	<svg id="drawing_region" width="256" height="256"></svg>
-	<script src="https://d3js.org/d3.v6.min.js"></script>
-	<script src="finaltask.js"></script>
-    <input type="number" id="epochInput" placeholder="Enter epoch number">
-    <button onclick="showImage()">Show Image</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Task</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #controls {
+            margin: 20px;
+        }
+
+        #epoch-step-display {
+            margin: 20px;
+        }
+
+        #drawing_region {
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+
+        #imageDisplay img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        input, button {
+            margin: 5px;
+            padding: 5px;
+            font-size: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-container{
+            margin:20px;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <div id="controls" class="button-group">
+        <button id="btn-decrease">刻み幅を半分にする</button>
+        <button id="btn-increase">刻み幅を2倍にする</button>
+        <div id="epoch-step-display">現在の刻み幅: 1</div>
+    </div>
+    
+    <svg id="drawing_region" width="960" height="500"></svg>
+    
+    <div id="epoch-input-container"class = input-container>
+        <input type="number" id="epochInput" placeholder="Enter epoch number">
+        <button onclick="showImage()">Show image of input epoch</button>
+    </div>
+
     <div id="imageDisplay"></div>
-    </body>
+
+    <script src="finaltask.js"></script>
+</body>
 </html>
+
