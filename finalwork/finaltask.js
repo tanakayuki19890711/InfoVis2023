@@ -16,7 +16,8 @@ class MyLossGraph {
 
     loadData() {
         d3.csv(this.csvFile).then(data => {
-            this.data = data.map((d, i) => ({x: i, y: +d.value}));
+            this.data = data.map((d, i) => ({x: d.epoch, y: d.loss}));
+            console.log(this.data);
             this.xScale = d3.scaleLinear()
                             .domain([0, this.data.length - 1])
                             .range([0, this.width]);
