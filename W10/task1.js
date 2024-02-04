@@ -41,7 +41,6 @@ class MyD3Chart {
     }
 }
 
-// インスタンス化とイベントハンドラの設定
 const myChart = new MyD3Chart('#drawing_region', 'https://tanakayuki19890711.github.io/InfoVis2023/W10/task1.csv');
 // const myChart = new MyD3Chart('#drawing_region', '/Users/tanakayuuki/Work/InfoVis2023/W10/task1.csv');
 

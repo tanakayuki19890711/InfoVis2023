@@ -30,8 +30,6 @@ class LineChart {
     }
 }
 
-
-// データ
 var data = [
     {x:0, y:100},
     {x:4, y:5},
