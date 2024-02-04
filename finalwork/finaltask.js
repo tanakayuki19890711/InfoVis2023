@@ -45,7 +45,7 @@ class MyLossGraph {
 
     update(data) {
         // データをフィルタリングして刻み幅に応じたデータを表示
-        const data = data.filter((d, i) => i % this.epochStep === 0);
+        data = data.filter((d, i) => i % this.epochStep === 0);
         let line = d3.line()
                      .x((d, i) => this.xScale(i))
                      .y(d => this.yScale(d.y));
