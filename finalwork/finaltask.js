@@ -12,6 +12,21 @@ class MyLossGraph {
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
         this.loadData();
+        // 刻み幅の初期値を設定
+        this.epochStep = 1; // 初期刻み幅
+
+        // 刻み幅変更用のボタンイベントを追加
+        d3.select("#btn-decrease").on("click", () => this.changeEpochStep(-1));
+        d3.select("#btn-increase").on("click", () => this.changeEpochStep(1));
+    }
+
+    // 刻み幅を変更するメソッド
+    changeEpochStep(change) {
+        // 刻み幅を更新
+        this.epochStep = Math.max(1, this.epochStep + change);
+
+        // グラフを更新
+        this.update(this.data);
     }
 
     loadData() {
@@ -29,6 +44,8 @@ class MyLossGraph {
     }
 
     update(data) {
+        // データをフィルタリングして刻み幅に応じたデータを表示
+        const data = data.filter((d, i) => i % this.epochStep === 0);
         let line = d3.line()
                      .x((d, i) => this.xScale(i))
                      .y(d => this.yScale(d.y));
